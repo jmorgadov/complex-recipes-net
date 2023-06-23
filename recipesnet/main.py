@@ -1,4 +1,6 @@
 import logging
+import os
+from pathlib import Path
 
 logging.basicConfig(
     level=logging.INFO, format="%(asctime)s [%(levelname)s]: %(message)s"
@@ -6,8 +8,4 @@ logging.basicConfig(
 
 
 def main():
-    logging.info("Implement streamlit app")
-
-
-if __name__ == "__main__":
-    main()
+    os.system(f"streamlit run {Path(__file__).parent}/Home.py")
