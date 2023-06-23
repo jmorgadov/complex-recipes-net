@@ -1,0 +1,27 @@
+[project]
+name = "recipesnet"
+description = "Application for recipes analysis using complex networks"
+version = "0.1.0"
+authors = [
+    { name = "Jorge Morgado", email = "jorge.morgadov@gmail.com" },
+    { name = "Roberto García", email = "robegr42@gmail.com" },
+]
+dependencies = [
+    "networkx",
+    "streamlit"
+]
+
+[project.optional-dependencies]
+dev = [
+    "black",
+]
+
+[project.scripts]
+recipes-net = "recipesnet.main:main"
+
+[build-system]
+requires = ["setuptools>=61.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.package-data]
+recipesnet = ["data/*.zip"]

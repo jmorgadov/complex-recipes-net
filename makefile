@@ -1,9 +1,11 @@
+install:
+	pip install -e .
 
-run:
-	echo TODO!
+remove:
+	pip uninstall recipesnet
 
 clean-graphs:
-	rm -f ./data/*.gz
+	rm -f ./recipesnet/data/*.gz
 
 clean: clean-graphs
-	rm -f ./data/*.json
+	rm -f ./recipesnet/data/*.json

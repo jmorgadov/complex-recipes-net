@@ -4,7 +4,7 @@ from typing import List
 
 import networkx as nx
 
-import recipes
+from recipesnet import recipes
 
 
 class RecipesApi:

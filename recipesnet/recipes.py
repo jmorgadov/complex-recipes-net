@@ -5,7 +5,9 @@ from pathlib import Path
 
 import networkx as nx
 
-DATA_PATH = Path("./data/")
+import recipesnet
+
+DATA_PATH = Path(recipesnet.__file__).parent / Path("data")
 ZIP_DATA_PATH = DATA_PATH / Path("recipe_jsons.zip")
 
 DATA_NITZA = DATA_PATH / Path("recipes_nitza.json")
