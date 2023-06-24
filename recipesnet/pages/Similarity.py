@@ -24,9 +24,11 @@ with c1:
     st.session_state.recipe = selected_recipe
 
     similar = api.similar_recipes(selected_recipe)
+    i = 0
     for rec, score in similar:
-        if st.button(f"{score:.1%}: {rec.capitalize()}"):
+        if st.button(f"{score:.1%}: {rec.capitalize()}", key=f"similarity_btn_{i}"):
             st.session_state.recipe = rec
+        i += 1
 
 with c2:
     recip_ingr_widget()
