@@ -15,8 +15,12 @@ DATA_5K = DATA_PATH / Path("recipes_5k.json")
 FINAL_DATA = DATA_PATH / Path("data.json")
 
 RECIPES_GRAPH = DATA_PATH / Path("recipes_graph.gz")
+RECP_INGR_GRAPH = DATA_PATH / Path("recp_ingr_graph.gz")
 
-GRAPH_PATHS = [RECIPES_GRAPH]
+GRAPH_PATHS = [
+    RECIPES_GRAPH,
+    RECP_INGR_GRAPH,
+]
 
 
 def unzip_data():
@@ -88,11 +92,28 @@ def create_graph(name: str):
         nx.write_graphml(G, name, encoding="utf-8")
         return G
 
+    if name == str(RECP_INGR_GRAPH):
+        recipes = list(data.keys())
+
+        # Recp-Ingr bipartite graph:
+        #  V: Ingredient | Recipe
+        #  E: (u, v) means u is ingridient of recipe v (or vice versa)
+        G = nx.Graph()
+        for i, rec in enumerate(recipes):
+            ingrs = set(data[rec])
+            G.add_node(rec, is_recipe=True, is_ingr=False)
+            for ing in ingrs:
+                G.add_node(ing, is_recipe=False, is_ingr=True)
+                G.add_edge(ing, rec)
+
+        nx.write_graphml(G, name, encoding="utf-8")
+        return G
+
 
 def load_graph(name):
     for graph in GRAPH_PATHS:
         if name == str(graph):
-            if not RECIPES_GRAPH.exists():
+            if not graph.exists():
                 return create_graph(name)
             return nx.read_graphml(name)
 
