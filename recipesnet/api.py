@@ -17,7 +17,6 @@ class RecipesApi:
         self.ingredients = sorted(
             [n for n, d in self.recp_ingr_graph.nodes(data=True) if d["is_ingr"]]
         )
-        # self.ingredients = sorted(list(reduce(add, self.raw_data.values())))
 
     @property
     def recipes_graph(self) -> nx.Graph:
@@ -27,16 +26,38 @@ class RecipesApi:
     def recp_ingr_graph(self) -> nx.Graph:
         return self.graphs[str(recipes.RECP_INGR_GRAPH)]
 
+    @property
+    def ingr_graph(self) -> nx.Graph:
+        return self.graphs[str(recipes.INGR_GRAPH)]
+
     def ingr_of(self, recipe) -> List[str]:
         return list(self.recp_ingr_graph.neighbors(recipe))
 
-    def recipes_that_use(self, ingrds: List[str]):
+    def recipes_that_use(
+        self, ingrds: List[str], ignore: List[str], only: bool = False
+    ):
         if not ingrds:
             return []
+
         recipes = set(self.recp_ingr_graph.neighbors(ingrds[0]))
         for ing in ingrds[1:]:
-            recipes = recipes & set(self.recp_ingr_graph.neighbors(ing))
-        return sorted(list(recipes))
+            recipes &= set(self.recp_ingr_graph.neighbors(ing))
+
+        ans = []
+        if only:
+            ingr_set = set(ingrds)
+            for rec in recipes:
+                rec_ingrd = set(self.recp_ingr_graph.neighbors(rec))
+                if ingr_set == rec_ingrd:
+                    ans.append(rec)
+        else:
+            for rec in recipes:
+                for ig_ing in ignore:
+                    if self.recp_ingr_graph.has_edge(rec, ig_ing):
+                        break
+                else:
+                    ans.append(rec)
+        return sorted(ans)
 
     def similar_recipes(self, recipe: str) -> List[Tuple[str, float]]:
         G = self.recipes_graph
@@ -45,3 +66,11 @@ class RecipesApi:
             w = G.edges[recipe, nb]["weight"]
             data.append((nb, w))
         return sorted(data, key=lambda x: x[1], reverse=True)
+
+    def ingrd_comb(self, ingrd):
+        G = self.ingr_graph
+        data = []
+        for nb in G.neighbors(ingrd):
+            w = G.edges[ingrd, nb]["weight"]
+            data.append((nb, w))
+        return sorted(data, key=lambda x: x[1], reverse=False)

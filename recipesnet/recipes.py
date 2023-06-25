@@ -1,9 +1,13 @@
 import json
 import zipfile
 from collections import defaultdict
+from functools import reduce
+from math import log
+from operator import or_
 from pathlib import Path
 
 import networkx as nx
+import numpy as np
 
 import recipesnet
 
@@ -16,11 +20,15 @@ FINAL_DATA = DATA_PATH / Path("data.json")
 
 RECIPES_GRAPH = DATA_PATH / Path("recipes_graph.gz")
 RECP_INGR_GRAPH = DATA_PATH / Path("recp_ingr_graph.gz")
+INGR_GRAPH = DATA_PATH / Path("ingr_graph.gz")
 
 GRAPH_PATHS = [
     RECIPES_GRAPH,
     RECP_INGR_GRAPH,
+    INGR_GRAPH,
 ]
+
+INVALID_ING = ["& half"]
 
 
 def unzip_data():
@@ -31,14 +39,22 @@ def unzip_data():
 def preprocess_nitza(data: dict) -> dict:
     new_data = defaultdict(list)
     for rec_name, rec_data in data.items():
-        new_data[rec_name] = [ing["name"] for ing in rec_data["ingredients"]]
+        new_data[rec_name] = [
+            ing["name"]
+            for ing in rec_data["ingredients"]
+            if ing["name"] not in INVALID_ING
+        ]
     return new_data
 
 
 def preprocess_data_5k(data: dict) -> dict:
     new_data = defaultdict(list)
     for rec_name, rec_data in data.items():
-        new_data[rec_name] = [ing["name"] for ing in rec_data["ingredients_simplified"]]
+        new_data[rec_name] = [
+            ing["name"]
+            for ing in rec_data["ingredients_simplified"]
+            if ing["name"] not in INVALID_ING
+        ]
     return new_data
 
 
@@ -92,7 +108,7 @@ def create_graph(name: str):
         nx.write_graphml(G, name, encoding="utf-8")
         return G
 
-    if name == str(RECP_INGR_GRAPH):
+    elif name == str(RECP_INGR_GRAPH):
         recipes = list(data.keys())
 
         # Recp-Ingr bipartite graph:
@@ -105,6 +121,47 @@ def create_graph(name: str):
             for ing in ingrs:
                 G.add_node(ing, is_recipe=False, is_ingr=True)
                 G.add_edge(ing, rec)
+
+        nx.write_graphml(G, name, encoding="utf-8")
+        return G
+
+    elif name == str(INGR_GRAPH):
+        recipes = list(data.keys())
+        ingrds = list(reduce(or_, [set(ingr) for ingr in data.values()]))
+        ingrds_idx = {ing: i for i, ing in enumerate(ingrds)}
+        N, M = len(recipes), len(ingrds)
+
+        matrix = np.zeros((N, M))
+        i = 0
+        for rec_name, rec_ingrds in data.items():
+            for ing in rec_ingrds:
+                matrix[i, ingrds_idx[ing]] = 1
+            i += 1
+
+        ingrds_sum = np.sum(matrix, axis=0)
+
+        def _recipes_in_common(ing1, ing2):
+            i_1 = ingrds_idx[ing1]
+            i_2 = ingrds_idx[ing2]
+            return np.sum(matrix[:, i_1] * matrix[:, i_2])
+
+        # Recp-Ingr bipartite graph:
+        #  V: Ingredient
+        #  E: Tf-Idf of every ingredients pair (higher weights means rare pair)
+        G = nx.Graph()
+        for i, ing1 in enumerate(ingrds):
+            for j in range(i + 1, len(ingrds)):
+                ing2 = ingrds[j]
+                i_1, i_2 = ingrds_idx[ing1], ingrds_idx[ing2]
+
+                e_ij = _recipes_in_common(ing1, ing2)
+                if e_ij == 0:
+                    continue
+                n_i = ingrds_sum[i_1]
+                n_j = ingrds_sum[i_2]
+                w = (1 + log(e_ij)) * log((n_i + n_j) / N)
+                print(ing1, ing2, w)
+                G.add_edge(ing1, ing2, weight=w)
 
         nx.write_graphml(G, name, encoding="utf-8")
         return G
