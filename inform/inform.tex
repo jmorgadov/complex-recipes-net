@@ -227,13 +227,33 @@ tienen las aristas de incidencia de esta sobre los ingredientes que la conforman
 \subsection{Grafo de Similaridad de Recetas}\label{sub:sim-graph}
 %-----------------------------------------------------------------------------------
 
+Otro de los grafos propuestos analiza la simulitud entre recetas de acuerdo a
+los ingredientes que posee, de esta forma se tiene una herramienta que permite
+tener una recomendación de variedades de recetas basados en sus componentes.
 
+La construcción del grafo se realiza creando conexiones entre las recetas que
+poseen ingredientes en común, las mismas se ponderan en cuanto a la cantidad de
+los mismos que dichas recetas comparten, de esta forma dos recetas serán más
+similares en dependencia del valor de las conexiones que las enlazan.
 
 %-----------------------------------------------------------------------------------
 \subsection{Grafo de IF-IRF}\label{sub:sim-graph}
 %-----------------------------------------------------------------------------------
 
 
+%-----------------------------------------------------------------------------------
+\subsection{Aplicación de Streamlit}\label{sub:app}
+%-----------------------------------------------------------------------------------
+
+Como medio de muestra de los estudios realizados en este trabajo se realizón
+una aplicación de Streamlit. En la aplicación se visualizan los algoritmos sobre
+los distintos grafos propuestos. De esta forma se observan todas las recetas del
+conjunto de datos, los ingrdientes que la conformas, asi como un sistema de
+filtrado de recetas de acuerdo a una lista de ingredientes que la conformen o no.
+
+También se integró un pequeño moledelo de \emph{scraping} que muestra varios
+enlaces a sitios en internet que muestran como elaborar una receta dada, dicho
+enlaces son producto de una búsqueda en \emph{Google}.
 
 %===================================================================================
 % Conclusiones
@@ -264,8 +284,6 @@ para entender mejor y explorar la complejidad de las relaciones entre los
 ingredientes y las recetas en el mundo de la cocina.
 
 %===================================================================================
-
-
 
 %===================================================================================
 % Recomendaciones
