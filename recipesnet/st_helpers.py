@@ -17,10 +17,41 @@ def get_api() -> RecipesApi:
             st.session_state["api"] = RecipesApi()
         return st.session_state.api
 
+def find_recipes():
+    st.header("Search recipes")
+    st.session_state.selected_ingr = st.session_state.get("selected_ingr", set())
+    st.session_state.ignored_ingr = st.session_state.get("ignored_ingr", set())
 
-def recip_ingr_widget(selected_ingrd=None):
-    st.header("Recipes ingredients")
-    selected_ingrd = [] if selected_ingrd is None else selected_ingrd
+    api = get_api()
+
+    selected_ingrd = st.multiselect(
+        "Recipes that use ...",
+        api.ingredients,
+        list(st.session_state.selected_ingr),
+    )
+
+    only = st.checkbox("Only those ingredients")
+
+    ignored_ingrd = [] if only else st.multiselect(
+        "but not use ...",
+        api.ingredients,
+        list(st.session_state.ignored_ingr),
+    )
+
+    recipes = api.recipes_that_use(selected_ingrd, ignored_ingrd, only)
+    st.header(f"Recipes ({len(recipes)})")
+    st.write(f"Recipes you can prepare using: {', '.join(selected_ingrd)}")
+    for i, rec in enumerate(recipes):
+        if st.button(rec, key=f"recipes_{i}"):
+            st.session_state.recipe = rec
+
+    st.session_state.selected_ingr = set(selected_ingrd)
+    st.session_state.ignored_ingr = set(ignored_ingrd)
+
+def recip_ingr_widget():
+    st.header("Recipes info")
+    st.session_state.selected_ingr = st.session_state.get("selected_ingr", set())
+    selected_ingrd = list(st.session_state.selected_ingr)
     api = get_api()
     recipes = api.recipes
     selected_recipe = st.selectbox(
