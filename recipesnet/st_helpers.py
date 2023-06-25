@@ -54,30 +54,29 @@ def find_recipes():
 
     if not only and recipes:
         max_value = max(recipes_ing_count)
+        min_value = min(recipes_ing_count)
+
         if limit == -1:
             limit = max_value
         if limit > max_value:
-            st.session_state.limit = limit
-        limit = st.slider(
-            "Ingridients limit",
-            min_value=1,
-            max_value=max_value,
-            value=limit,
-            key="lim",
-        )
-
-    if st.button("Save search", disabled=not selected_ingrd):
-        st.session_state.selected_ingr = selected_ingrd
-        st.session_state.ignored_ingr = ignored_ingrd
-        st.session_state.limit = limit
-        st.experimental_rerun()
+            limit = st.session_state.limit = max_value
+        if limit < max_value:
+            limit = st.session_state.limit = min_value
+        if max_value != min_value:
+            limit = st.slider(
+                "Ingridients limit",
+                min_value=min_value,
+                max_value=max_value,
+                value=limit,
+                key="lim",
+            )
 
     recipes = [rec for i, rec in enumerate(recipes) if recipes_ing_count[i] <= limit]
     st.header(f"Recipes ({len(recipes)})")
     st.write(f"Recipes you can prepare using: {', '.join(selected_ingrd)}")
     for i, rec in enumerate(recipes):
         if st.button(rec, key=f"recipes_{i}"):
-            st.session_state.selected_ingr = selected_ingrd
+            st.session_state.selected_ingr = set(selected_ingrd)
             st.session_state.recipe = rec
 
 

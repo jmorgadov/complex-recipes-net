@@ -5,6 +5,13 @@ from recipesnet.st_helpers import recip_ingr_widget
 
 st.set_page_config("Recipes net", layout="wide")
 
+st.title("Recipes similarity")
+st.write(
+    """
+In this section you can search what recipes are similar to an specific one.
+    """
+)
+
 with st.spinner("Loading data..."):
     if "api" not in st.session_state:
         st.session_state["api"] = RecipesApi()

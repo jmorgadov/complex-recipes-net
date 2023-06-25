@@ -42,7 +42,7 @@ def preprocess_nitza(data: dict) -> dict:
         new_data[rec_name] = [
             ing["name"]
             for ing in rec_data["ingredients"]
-            if ing["name"] not in INVALID_ING
+            if ing["name"].strip() not in INVALID_ING
         ]
     return new_data
 
@@ -53,7 +53,7 @@ def preprocess_data_5k(data: dict) -> dict:
         new_data[rec_name] = [
             ing["name"]
             for ing in rec_data["ingredients_simplified"]
-            if ing["name"] not in INVALID_ING
+            if ing["name"].strip() not in INVALID_ING
         ]
     return new_data
 
@@ -160,7 +160,6 @@ def create_graph(name: str):
                 n_i = ingrds_sum[i_1]
                 n_j = ingrds_sum[i_2]
                 w = (1 + log(e_ij)) * log((n_i + n_j) / N)
-                print(ing1, ing2, w)
                 G.add_edge(ing1, ing2, weight=w)
 
         nx.write_graphml(G, name, encoding="utf-8")
