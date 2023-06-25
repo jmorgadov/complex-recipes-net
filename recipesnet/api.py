@@ -34,14 +34,25 @@ class RecipesApi:
         return list(self.recp_ingr_graph.neighbors(recipe))
 
     def recipes_that_use(
-        self, ingrds: List[str], ignore: List[str], only: bool = False
+        self,
+        ingrds: List[str],
+        ignore: List[str],
+        only: bool = False,
+        limit: int = -1,
     ):
         if not ingrds:
             return []
 
-        recipes = set(self.recp_ingr_graph.neighbors(ingrds[0]))
-        for ing in ingrds[1:]:
-            recipes &= set(self.recp_ingr_graph.neighbors(ing))
+        recipes = set()
+        for ing in ingrds:
+            nb = set(self.recp_ingr_graph.neighbors(ing))
+            new_recipes = set()
+
+            for rec in nb:
+                if limit != -1 and len(self.recp_ingr_graph.neighbors((rec))) > limit:
+                    continue
+                new_recipes.add(rec)
+            recipes = recipes & new_recipes if recipes else new_recipes
 
         ans = []
         if only:

@@ -1,3 +1,4 @@
+import enum
 import urllib.request
 
 import streamlit as st
@@ -17,10 +18,12 @@ def get_api() -> RecipesApi:
             st.session_state["api"] = RecipesApi()
         return st.session_state.api
 
+
 def find_recipes():
     st.header("Search recipes")
     st.session_state.selected_ingr = st.session_state.get("selected_ingr", set())
     st.session_state.ignored_ingr = st.session_state.get("ignored_ingr", set())
+    limit = st.session_state.limit = st.session_state.get("limit", -1)
 
     api = get_api()
 
@@ -28,25 +31,55 @@ def find_recipes():
         "Recipes that use ...",
         api.ingredients,
         list(st.session_state.selected_ingr),
+        key="ingr",
     )
 
     only = st.checkbox("Only those ingredients")
 
-    ignored_ingrd = [] if only else st.multiselect(
-        "but not use ...",
-        api.ingredients,
-        list(st.session_state.ignored_ingr),
+    ignored_ingrd = (
+        []
+        if only
+        else st.multiselect(
+            "but not use ...",
+            api.ingredients,
+            list(st.session_state.ignored_ingr),
+            key="ignored",
+        )
     )
 
     recipes = api.recipes_that_use(selected_ingrd, ignored_ingrd, only)
+    recipes_ing_count = [
+        len(list(api.recp_ingr_graph.neighbors(rec))) for rec in recipes
+    ]
+
+    if not only and recipes:
+        max_value = max(recipes_ing_count)
+        if limit == -1:
+            limit = max_value
+        if limit > max_value:
+            st.session_state.limit = limit
+        limit = st.slider(
+            "Ingridients limit",
+            min_value=1,
+            max_value=max_value,
+            value=limit,
+            key="lim",
+        )
+
+    if st.button("Save search", disabled=not selected_ingrd):
+        st.session_state.selected_ingr = selected_ingrd
+        st.session_state.ignored_ingr = ignored_ingrd
+        st.session_state.limit = limit
+        st.experimental_rerun()
+
+    recipes = [rec for i, rec in enumerate(recipes) if recipes_ing_count[i] <= limit]
     st.header(f"Recipes ({len(recipes)})")
     st.write(f"Recipes you can prepare using: {', '.join(selected_ingrd)}")
     for i, rec in enumerate(recipes):
         if st.button(rec, key=f"recipes_{i}"):
+            st.session_state.selected_ingr = selected_ingrd
             st.session_state.recipe = rec
 
-    st.session_state.selected_ingr = set(selected_ingrd)
-    st.session_state.ignored_ingr = set(ignored_ingrd)
 
 def recip_ingr_widget():
     st.header("Recipes info")
