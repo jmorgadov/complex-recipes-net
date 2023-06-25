@@ -149,44 +149,29 @@ las relaciones entre ingredientes y recetas}
 
 El análisis de redes complejas es un campo interdisciplinario que se enfoca en
 el estudio de las propiedades y el comportamiento de sistemas complejos que
-pueden ser modelados como redes. Una red compleja es un grafo, un conjunto de
-nodos o vértices conectados por enlaces o aristas. Estos nodos y enlaces a
-menudo representan entidades y relaciones en sistemas como redes sociales,
-sistemas de transporte, redes de comunicación, redes de información, etc.
-\cite{boccaletti}
+pueden ser modelados como un grafo, cuyos nodos y enlaces a representan
+entidades y relaciones en sistemas como redes sociales, sistemas de transporte,
+redes de comunicación, redes de información, etc.
+\cite{boccaletti2006complex}
 
 El análisis de redes complejas utiliza herramientas matemáticas y
-computacionales para estudiar la estructura, la dinámica y la función de estas
-redes. Algunas de las medidas importantes que se utilizan en el análisis de
+computacionales para estudiar la estructura, la dinámica y la función de las 
+mismas. Algunas de las medidas importantes que se utilizan en el análisis de
 redes complejas son la centralidad, la modularidad, la conectividad y la
-robustez.\cite{costa}
+robustez.\cite{costa2007characterization}
 
-En los últimos años, el análisis de redes complejas se ha convertido en una
-técnica matemática clave para entender la estructura y dinámica de sistemas
-complejos que pueden ser representados por nodos y conexiones.
-
-En particular, en el ámbito de las recetas de cocina, el análisis de redes
-complejas se ha utilizado para analizar las relaciones entre los ingredientes y
-las recetas. Esta técnica ha permitido identificar patrones y tendencias en la
-forma en que se utilizan los ingredientes y las combinaciones de sabores más
-populares. Además, ha permitido entender mejor la historia y la evolución de las
-recetas, al analizar cómo los ingredientes y las combinaciones de sabores han
-cambiado con el tiempo y cómo se han difundido a través de diferentes culturas y
-regiones. \cite{ahn, herrera}
+El análisis de redes complejas se ha utilizado para analizar las relaciones
+entre los ingredientes y las recetas. Esta técnica ha permitido identificar
+patrones y tendencias en la forma en que se utilizan los ingredientes y las
+combinaciones de sabores más populares. Además, ha permitido entender mejor la
+historia y la evolución de las recetas, al analizar cómo los ingredientes y las
+combinaciones de sabores han cambiado con el tiempo y cómo se han difundido a
+través de diferentes culturas y regiones. \cite{ahn2011flavor, herrera2021contribution}
 
 En este trabajo, se explorará el análisis de redes complejas en el ámbito de las
-recetas de cocina. En una red de recetas, los nodos representan las recetas y
-los enlaces representan las similitudes entre ellas, como la presencia de
-ingredientes similares o la utilización de técnicas de cocción similares. El
-análisis de esta red puede mostrar cómo diferentes tipos de cocina se relacionan
-entre sí y cómo se pueden agrupar las recetas en función de sus características
-compartidas. Se describirán los fundamentos teóricos de la técnica y se
-presentarán ejemplos de su aplicación en el estudio de las relaciones entre
-ingredientes y recetas. También se explorarán las posibles aplicaciones futuras
-de esta técnica en el desarrollo de nuevas combinaciones de sabores y recetas.
-En conjunto, el análisis de redes complejas se presenta como una herramienta
-valiosa para entender y explorar la complejidad de las relaciones entre los
-ingredientes y las recetas en el mundo de la cocina.
+recetas de cocina. Se realizarán varios estudios con respecto a distintos grafos
+obtenidos, entre los cuales se representan relaciones entre ingredientes y
+recetas y relaciones entre recetas buscando un comportamiento de similaridad.
 
 %===================================================================================
 
@@ -245,10 +230,8 @@ tienen las aristas de incidencia de esta sobre los ingredientes que la conforman
 
 
 %-----------------------------------------------------------------------------------
-\subsection{Grafo de Similaridad de Recetas}\label{sub:sim-graph}
+\subsection{Grafo de IF-IRF}\label{sub:sim-graph}
 %-----------------------------------------------------------------------------------
-
-
 
 
 
@@ -262,9 +245,19 @@ se aplica en una amplia variedad de campos, incluyendo el de las recetas de
 cocina. En este trabajo, se muestra cómo esta técnica se utiliza para entender
 las relaciones entre los ingredientes y las recetas, y cómo ha permitido
 identificar patrones y tendencias en la forma en que se utilizan los
-ingredientes y las combinaciones de sabores. Además, se ha explorado cómo estás
-técnicas pueden utilizarse para desarrollar nuevas combinaciones de sabores y
-recetas.
+ingredientes y las combinaciones de sabores.
+
+Se logró buscar una similaridad entre tipos de recetas, logrando resultados
+basados los datos analizados que representaban como ingredientes de
+características parecidas podían usarse indistintamente en una misma receta o
+analizando el porciento de ingredientes comunes entre las mismas, de esta forma
+se logra versatilidad a la hora de hacer una elaboración deseada sin tener
+completamente el conjunto de ingredientes que la conforman.
+
+Se obtiene además un mecanismo de recomendación de ingredientes a la hora de
+buscar una receta a realizar, el cual, junto a la herramienta de \emph{scraping}
+integrada en la aplicación, se logra un modelo completo de ayuda al usuario, ya
+que proporciona los medios y los pasos de elaboración.
 
 En resumen, el análisis de redes complejas es una técnica de análisis esencial
 para entender mejor y explorar la complejidad de las relaciones entre los
@@ -288,6 +281,8 @@ futuros trabajos:
 	alimentación
 	\item Insertar conocimiento geográfico que permita un análisis regional
 	agregando, además, recetas de diferentes culturas.
+	\item Agregar información sobre métodos de cocción que sirvan de métrica de
+	comparación en funciones de similaridad entre recetas.
 \end{itemize}
 
 %===================================================================================
@@ -297,19 +292,10 @@ futuros trabajos:
 %===================================================================================
 % Bibliografía
 %-----------------------------------------------------------------------------------
-\begin{thebibliography}{99}
-%-----------------------------------------------------------------------------------
-	\bibitem{costa} Costa, L. D. F., Rodrigues, F. A., Travieso, G., \& Villas Boas, P. R. (2007). Characterization of complex networks: A survey of measurements. Advances in physics, 56(1), 167-242.
 
-	\bibitem{boccaletti} Boccaletti, S., Latora, V., Moreno, Y., Chavez, M., \& Hwang, D. U. (2006). Complex networks: Structure and dynamics. Physics reports, 424(4-5), 175-308.
+\bibliography{Bibliography.bib}
 
-	\bibitem{ahn} Ahn, Y. Y., Ahnert, S. E., Bagrow, J. P., & Barabási, A. L. (2011). Flavor network and the principles of food pairing. Scientific reports, 1(1), 1-7.
-
-	\bibitem{herrera} Herrera, J. C. (2021). The contribution of network science to the study of food recipes. A review paper. Appetite, 159, 105048.
-
-%-----------------------------------------------------------------------------------
-\end{thebibliography}
-
+%plain, unsrt, abbrv y alpha.
 %-----------------------------------------------------------------------------------
 
 \label{end}
