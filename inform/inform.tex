@@ -201,100 +201,58 @@ ingredientes y las recetas en el mundo de la cocina.
 %-----------------------------------------------------------------------------------
 \section{Desarrollo}\label{sec:dev}
 %-----------------------------------------------------------------------------------
-  En esta sección (o secciones) incluya el contenido fundamental del artículo.
-  No es necesario tener una sección nombrada \emph{Desarrollo}, por el contrario,
-  nombre las secciones según el contenido que tratan.
+En el presente trabajo se analiza la relación entre ingredientes y recetas,
+las cuales son representadas en grafos que contienen dicha información. Se
+pretende estudiar varios comportamientos y realizar diferentes estudios, los
+cuales serán explicados en las secciones siguientes. 
+
+Para una mejor visualiazción de los resultados se desarrolló una aplicación de
+\emph{Streamlit} en la cual se puede interactuar con los análisis propuestos.
+Además se trabaja con la biblioteca \emph{networkx} de \emph{Python}, la cual
+contienen algoritmos para trabajar con las estructuras creadas.
 
 %-----------------------------------------------------------------------------------
-	\subsection{Organización del Documento}\label{sub:results}
-%-----------------------------------------------------------------------------------
-		Puede agregar secciones y subsecciones según sea necesario para organizar
-		de manera más coherente su artículo. Tenga en cuenta que un documento más
-		plano es más fácil de navegar y entender, pero las subsecciones relacionadas
-		deberían estar agrupadas en una sección común.
+\subsection{Datos}\label{sub:data}
 
-		Los nombres de las secciones deben ir en mayúsculas, excepto para las
-		preposiciones, conjunciones, y otros vocablos auxiliares.
+Para la realización de este proyecto se uso como fuente de datos el libro
+\emph{Cocina al minuto} de la escritora Nitza Villapol y además se trabajó con
+una base de datos de internet de la Universidad de Barcelona que se encuentra
+en esta dirección \href{http://www.ub.edu/cvub/recipes5k/}{Recipes5k}
 
-		Empiece un nuevo párrafo cada vez que vaya a comenzar una idea nueva.
-
+Estos datos fueron parseados y analizados, los datos obtenidas del libro de
+Nitza Villapol se extrayeron manualmente y traducido al inglés. Por último ambas
+fuentes de datos fueron almacenas en archivos \emph{.json} para un mejor manejo
+al momento de construir los grafos de relaciones.
 %-----------------------------------------------------------------------------------
-	\subsection{Listas y Descripciones}\label{sub:lists}
-%-----------------------------------------------------------------------------------
-		Para producir listas enumeradas, utilice el siguiente estilo:
-		\begin{enumerate}
-			\item Primer Elemento
-			\item Segundo Elemento
-			%
-			\begin {enumerate}
-				\item {Segundo Elemento - Subítem Uno}
-				\item {Segundo Elemento - Subítem Dos}
-			\end {enumerate}
-			%
-		\end{enumerate}
 
 %-----------------------------------------------------------------------------------
-		Para producir descripciones, use el siguiente estilo:
+\subsection{Grafo de Ingredientes y Recetas}\label{sub:ing-recip-graph}
+%-----------------------------------------------------------------------------------
+El primer grafo ralizado (o red compleja) refleja la relación de ingredientes
+contra recetas. Dicha relación se muestra como un grafo bipartito, donde se
+establecen conexiones entre todos los ingredientes y las recetas en las que
+aparecen.
+
+Usando este grafo podemos tener información de los ingredientes de una receta,
+y encontrar, dado un conjunto de estos, el grupo de recetas en la bipartición
+del grafo donde estas se encuentran, todas las que contengas dichos ingredientes.
+Esté análisis se basa en las búsqueda de las aristas.
+
+De igual forma se puede tener, con la bipartición de los ingredientes, los
+ingredientes que participen en la elaboración de una receta dada, ya que se
+tienen las aristas de incidencia de esta sobre los ingredientes que la conforman.
 
 %-----------------------------------------------------------------------------------
-		\begin{description}
-			\item [Primer Elemento] con su respectiva descripción.
-			\item [Segundo Elemento] también con su respectiva descripción.
-		\end{description}
+\subsection{Grafo de Similaridad de Recetas}\label{sub:sim-graph}
+%-----------------------------------------------------------------------------------
+
+
 
 %-----------------------------------------------------------------------------------
-	\subsection{Figuras}\label{sub:figures}
+\subsection{Grafo de Similaridad de Recetas}\label{sub:sim-graph}
 %-----------------------------------------------------------------------------------
-		Para producir cuerpos flotantes (figuras o tablas), asegúrese de numerar
-		y etiquetar correctamente cada figura. Las referencias a las figuras deben
-		estar correctamente etiquetadas. Por ejemplo, véase la Fig. \ref{fig:ex}\ldots
 
-		\begin{figure}[h!]%
-		\begin{center}
-			\begin{tabular}{|c|c|c|} \hline
-			 			& Método 1 	& Método 2 	\\ \hline
-			A 			&  			&  			\\ \hline
-			B			& 			& 			\\ \hline
-			C 			& 			&  			\\ \hline
-			\end{tabular}
-		\caption{Figura de ejemplo. Recuerde especificar el origen de los datos que se muestran. \label{fig:ex}}
-		\end{center}
-		\end{figure}
 
-%-----------------------------------------------------------------------------------
-	\subsection{Código Fuente}\label{sub:listings}
-%-----------------------------------------------------------------------------------
-		Para producir código fuente, envuélvalo en una figura flotante y
-		etiquételo correctamente. Por ejemplo, en la Fig. \ref{fig:code}
-		se muestra un código bastante conocido\ldots
-
-		% Configuración de Listings
-		\lstset{keywordstyle=\color{blue}, basicstyle=\small}
-
-		\begin{figure}[htb]%
-			\begin{lstlisting}[language=c]%
-
-    int main(int argc, char** argv)
-    {
-        // Imprimiendo "Hola Mundo".
-        printf("Hello, World");
-    }
-
-			\end{lstlisting}
-		\caption{Código fuente de ejemplo.\label{fig:code}}
-		\end{figure}
-
-%-----------------------------------------------------------------------------------
-	\subsection{Referencias}
-%-----------------------------------------------------------------------------------
-  	Las referencias deben estar agrupadas en una sección al final del artículo,
-  	y las citas numeradas correctamente, por ejemplo \cite{knuth} o \cite{goedel}.
-  	Incluya toda la información importante de cada referencia, incluídos autor,
-  	título, y notas de la edición. En caso de citar sitios web, además
-  	de la URL, incluya la fecha en que fue consultado, como en \cite{wiki}. Numere 
-  	las referencias según el orden en que se les cita.
-
-%===================================================================================
 
 
 
