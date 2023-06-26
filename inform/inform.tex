@@ -27,7 +27,6 @@
 %===================================================================================
 
 
-
 %===================================================================================
 % Presentacion
 %-----------------------------------------------------------------------------------
@@ -62,6 +61,7 @@ las relaciones entre ingredientes y recetas}
 %===================================================================================
 
 
+\newcommand{\todo}[1]{\color{red}#1\color{black}}
 
 %===================================================================================
 % DOCUMENTO
@@ -89,14 +89,12 @@ las relaciones entre ingredientes y recetas}
 	El análisis de redes complejas es una técnica matemática que se utiliza para
 	estudiar sistemas complejos que pueden ser representados mediante nodos y
 	conexiones. Esta técnica se aplica en una amplia variedad de campos, como la
-	biología, la física, la sociología, la informática y muchos otros. En el
-	ámbito de las recetas de cocina, el análisis de redes complejas se utiliza
-	para analizar las relaciones entre los ingredientes y las recetas. Estos
-	estudios han permitido identificar patrones, tendencias en la forma en que
-	se utilizan los ingredientes,  las combinaciones de sabores más populares y
-	las recetas más comunes, lo que ha permitido a los chefs y amantes de la
-	comida entender mejor las preferencias de los consumidores y desarrollar
-	nuevas combinaciones de sabores y recetas.
+	biología, la física, la sociología y la informática. En el ámbito de las
+	recetas de cocina, el análisis de redes complejas se utiliza para analizar
+	las relaciones entre los ingredientes y las recetas. Estos estudios han
+	permitido identificar patrones, tendencias en la forma en que se utilizan
+	los ingredientes,  las combinaciones de sabores más populares y las recetas
+	más comunes.
 
 \end{abstract}
 
@@ -109,14 +107,12 @@ las relaciones entre ingredientes y recetas}
 
 	Complex network analysis is a mathematical technique used to study complex
 	systems that can be represented by nodes and connections. This technique is
-	applied in a wide variety of fields such as biology, physics, sociology,
-	computer science, and many others. In the field of cooking recipes, complex
-	network analysis is used to analyze the relationships between ingredients
-	and recipes. These studies have allowed the identification of patterns and
-	trends in the way ingredients are used, the most popular flavor
-	combinations, and the most common recipes. This has enabled chefs and food
-	enthusiasts to better understand consumer preferences and develop new flavor
-	combinations and recipes.
+	applied in a wide variety of fields such as biology, physics, sociology and
+	computer science. In the field of cooking recipes, complex network analysis
+	is used to analyze the relationships between ingredients and recipes. These
+	studies have allowed the identification of patterns and trends in the way
+	ingredients are used, the most popular flavor combinations, and the most
+	common recipes.
 
 \end{enabstract}
 
@@ -153,164 +149,182 @@ las relaciones entre ingredientes y recetas}
 
 El análisis de redes complejas es un campo interdisciplinario que se enfoca en
 el estudio de las propiedades y el comportamiento de sistemas complejos que
-pueden ser modelados como redes. Una red compleja es un grafo, un conjunto de
-nodos o vértices conectados por enlaces o aristas. Estos nodos y enlaces a
-menudo representan entidades y relaciones en sistemas como redes sociales,
-sistemas de transporte, redes de comunicación, redes de información, etc.
-\cite{boccaletti}
+pueden ser modelados como un grafo, cuyos nodos y enlaces a representan
+entidades y relaciones en sistemas como redes sociales, sistemas de transporte,
+redes de comunicación, redes de información, etc.
+\cite{boccaletti2006complex}
 
 El análisis de redes complejas utiliza herramientas matemáticas y
-computacionales para estudiar la estructura, la dinámica y la función de estas
-redes. Algunas de las medidas importantes que se utilizan en el análisis de
+computacionales para estudiar la estructura, la dinámica y la función de las 
+mismas. Algunas de las medidas importantes que se utilizan en el análisis de
 redes complejas son la centralidad, la modularidad, la conectividad y la
-robustez.\cite{costa}
+robustez.\cite{costa2007characterization}
 
-En los últimos años, el análisis de redes complejas se ha convertido en una
-técnica matemática clave para entender la estructura y dinámica de sistemas
-complejos que pueden ser representados por nodos y conexiones.
-
-En particular, en el ámbito de las recetas de cocina, el análisis de redes
-complejas se ha utilizado para analizar las relaciones entre los ingredientes y
-las recetas. Esta técnica ha permitido identificar patrones y tendencias en la
-forma en que se utilizan los ingredientes y las combinaciones de sabores más
-populares. Además, ha permitido entender mejor la historia y la evolución de las
-recetas, al analizar cómo los ingredientes y las combinaciones de sabores han
-cambiado con el tiempo y cómo se han difundido a través de diferentes culturas y
-regiones. \cite{ahn, herrera}
+El análisis de redes complejas se ha utilizado para analizar las relaciones
+entre los ingredientes y las recetas. Esta técnica ha permitido identificar
+patrones y tendencias en la forma en que se utilizan los ingredientes y las
+combinaciones de sabores más populares. Además, ha permitido entender mejor la
+historia y la evolución de las recetas, al analizar cómo los ingredientes y las
+combinaciones de sabores han cambiado con el tiempo y cómo se han difundido a
+través de diferentes culturas y regiones. \cite{ahn2011flavor, herrera2021contribution}
 
 En este trabajo, se explorará el análisis de redes complejas en el ámbito de las
-recetas de cocina. En una red de recetas, los nodos representan las recetas y
-los enlaces representan las similitudes entre ellas, como la presencia de
-ingredientes similares o la utilización de técnicas de cocción similares. El
-análisis de esta red puede mostrar cómo diferentes tipos de cocina se relacionan
-entre sí y cómo se pueden agrupar las recetas en función de sus características
-compartidas. Se describirán los fundamentos teóricos de la técnica y se
-presentarán ejemplos de su aplicación en el estudio de las relaciones entre
-ingredientes y recetas. También se explorarán las posibles aplicaciones futuras
-de esta técnica en el desarrollo de nuevas combinaciones de sabores y recetas.
-En conjunto, el análisis de redes complejas se presenta como una herramienta
-valiosa para entender y explorar la complejidad de las relaciones entre los
-ingredientes y las recetas en el mundo de la cocina.
+recetas de cocina. Se realizarán varios estudios con respecto a distintos grafos
+obtenidos, entre los cuales se representan relaciones entre ingredientes y
+recetas y relaciones entre recetas buscando un comportamiento de similaridad.
+
+El informe prosigue con la siguente es estructura: primero una sección dedicada
+al tratamiento y extracción de los datos \ref{sec:data}, una sección que
+aborda la creación de de los grafos analisados asi como su representación
+\ref{sec:graphs} y luego una sección sobre la aplciación creada para la
+interacción de usuarios \ref{sec:app}. Posteriormente, se presentan las
+conclusiones finales \ref{sec:conc} y algunas recomendaciones para estudios
+futuros \ref{sec:rec}.
 
 %===================================================================================
 
 
 
-%===================================================================================
-% Desarrollo
 %-----------------------------------------------------------------------------------
-\section{Desarrollo}\label{sec:dev}
-%-----------------------------------------------------------------------------------
-  En esta sección (o secciones) incluya el contenido fundamental del artículo.
-  No es necesario tener una sección nombrada \emph{Desarrollo}, por el contrario,
-  nombre las secciones según el contenido que tratan.
+% En el presente trabajo se analiza la relación entre ingredientes y recetas,
+% las cuales son representadas en grafos que contienen dicha información. Se
+% pretende estudiar varios comportamientos y realizar diferentes estudios, los
+% cuales serán explicados en las secciones siguientes. 
 
-%-----------------------------------------------------------------------------------
-	\subsection{Organización del Documento}\label{sub:results}
-%-----------------------------------------------------------------------------------
-		Puede agregar secciones y subsecciones según sea necesario para organizar
-		de manera más coherente su artículo. Tenga en cuenta que un documento más
-		plano es más fácil de navegar y entender, pero las subsecciones relacionadas
-		deberían estar agrupadas en una sección común.
-
-		Los nombres de las secciones deben ir en mayúsculas, excepto para las
-		preposiciones, conjunciones, y otros vocablos auxiliares.
-
-		Empiece un nuevo párrafo cada vez que vaya a comenzar una idea nueva.
+% Para una mejor visualiazción de los resultados se desarrolló una aplicación de
+% \emph{Streamlit} en la cual se puede interactuar con los análisis propuestos.
+% Además se trabaja con la biblioteca \emph{networkx} de \emph{Python}, la cual
+% contienen algoritmos para trabajar con las estructuras creadas.
 
 %-----------------------------------------------------------------------------------
-	\subsection{Listas y Descripciones}\label{sub:lists}
-%-----------------------------------------------------------------------------------
-		Para producir listas enumeradas, utilice el siguiente estilo:
-		\begin{enumerate}
-			\item Primer Elemento
-			\item Segundo Elemento
-			%
-			\begin {enumerate}
-				\item {Segundo Elemento - Subítem Uno}
-				\item {Segundo Elemento - Subítem Dos}
-			\end {enumerate}
-			%
-		\end{enumerate}
+
+\section{Extracción de datos}\label{sec:data}
+
+Para la realización de este proyecto se usaron dos fuentes de datos: el libro
+\emph{Cocina al minuto} de la escritora Nitza Villapol y el \emph{dataset}
+Recipes5k creado en la Universidad de Barcelona \cite{bolanos2017food}.
+
+La extracción de las recetas e ingredientes del libro \emph{Cocina al minuto}
+se realizó de forma manual. Posteriormente, estos datos fueron traducidos al
+inglés con el objetivo de manternet la consistencia con el resto de las
+fuentes. En el caso del \emph{dataset} Recipes5k se seleccionaron los nombres
+de las recetas y los ingredientes simplificados.
+
+Finalmente todos estos datos fueron unificados en un solo archivo de formato
+\texttt{json}. La estrucutra del mismo se basa en un diccionario donde cada
+receta representa una llave y su valor es una lista de ingredientes.
 
 %-----------------------------------------------------------------------------------
-		Para producir descripciones, use el siguiente estilo:
 
 %-----------------------------------------------------------------------------------
-		\begin{description}
-			\item [Primer Elemento] con su respectiva descripción.
-			\item [Segundo Elemento] también con su respectiva descripción.
-		\end{description}
+\section{Grafos implementados}\label{sec:graphs}
+
+En el proyecto se implementaron grafos utilizando la biblioteca \emph{NetworkX}
+de \emph{Python}. El objetivo principal del proyecto fue extraer información de
+los grafos para mostrarla en una aplicación. Para lograr este objetivo, se
+crearon grafos a partir de los datos previamente mencionados. Una vez creados
+los grafos, se utilizaron las funciones de \emph{NetworkX} para analizarlos y
+extraer la información deseada. Dichos grafos serán explicados en las siguientes
+secciones.
+
+\subsection{Grafo de Ingredientes y Recetas}\label{sub:ing-recip-graph}
+%-----------------------------------------------------------------------------------
+
+Una de las interrogantes más simples que un usuario puede tener es saber
+qué recetas se pueden cocinar dado una lista de ingredientes. Para ello,
+se construyó un grafo bipartito donde cada vértice representa una receta
+o un ingrediente y cada arista $(u, v)$ existe si y solo si el ingrediente
+$u$ es necesario en la receta $v$ (o vice versa).
+
+Luego, sea $nb(x)$ los vecinos de un nodo $x$, y dado una lista de ingredientes
+$A = a_1, a_2, ..., a_n$, el conjunto de recetas que se pueden preparar está dado
+por:
+
+$$ nb(a_1) \cap nb(a_2) \cap ... \cap nb(a_n)$$
+
+Expresado de otra manera, el conjunto de recetas $u$ tal que existe al menos
+una arista en $E$ (conjunto de aristas del grafo) entre algún ingrediente de
+$A$ y la receta $u$:
+
+$$ \{v ~|~ (a, v) \in E \wedge a \in A \} $$
 
 %-----------------------------------------------------------------------------------
-	\subsection{Figuras}\label{sub:figures}
+\subsection{Grafo de Similaridad de Recetas}\label{sub:sim-rec-graph}
 %-----------------------------------------------------------------------------------
-		Para producir cuerpos flotantes (figuras o tablas), asegúrese de numerar
-		y etiquetar correctamente cada figura. Las referencias a las figuras deben
-		estar correctamente etiquetadas. Por ejemplo, véase la Fig. \ref{fig:ex}\ldots
 
-		\begin{figure}[h!]%
-		\begin{center}
-			\begin{tabular}{|c|c|c|} \hline
-			 			& Método 1 	& Método 2 	\\ \hline
-			A 			&  			&  			\\ \hline
-			B			& 			& 			\\ \hline
-			C 			& 			&  			\\ \hline
-			\end{tabular}
-		\caption{Figura de ejemplo. Recuerde especificar el origen de los datos que se muestran. \label{fig:ex}}
-		\end{center}
-		\end{figure}
+Otra pregunta interesante es saber que recetas son similares entre sí. Para
+ello se construyó un grafo ponderado donde cada vértice representa una receta,
+y las aristas entre recetas indican el nivel de similitud de las mismas.
 
-%-----------------------------------------------------------------------------------
-	\subsection{Código Fuente}\label{sub:listings}
-%-----------------------------------------------------------------------------------
-		Para producir código fuente, envuélvalo en una figura flotante y
-		etiquételo correctamente. Por ejemplo, en la Fig. \ref{fig:code}
-		se muestra un código bastante conocido\ldots
+Si se define $Ing(r)$ como el conjunto de ingredientes necesarios para la preparació
+de una receta $r$, el coeficiente de similitud entre dos recetas se puede definir como:
 
-		% Configuración de Listings
-		\lstset{keywordstyle=\color{blue}, basicstyle=\small}
+$$ c(r_1, r_2) = \frac{|Ing(r_1) \cap Ing(r_2)|}{|Ing(r_1) \cup Ing(r_2)|}$$
 
-		\begin{figure}[htb]%
-			\begin{lstlisting}[language=c]%
+Debido a la densidad de este grafo, solo se almacenaron las aristas con un 
+coeficiente $c > 0.3$.
 
-    int main(int argc, char** argv)
-    {
-        // Imprimiendo "Hola Mundo".
-        printf("Hello, World");
-    }
-
-			\end{lstlisting}
-		\caption{Código fuente de ejemplo.\label{fig:code}}
-		\end{figure}
+Luego, dado una receta $r$, se pueden obtener las recetas más similares a ella
+analizando el peso de las aristas de la forma $(r, u)$ en el grafo.
 
 %-----------------------------------------------------------------------------------
-	\subsection{Referencias}
+\subsection{Grafo de IF-IRF}\label{sub:sim-graph}
 %-----------------------------------------------------------------------------------
-  	Las referencias deben estar agrupadas en una sección al final del artículo,
-  	y las citas numeradas correctamente, por ejemplo \cite{knuth} o \cite{goedel}.
-  	Incluya toda la información importante de cada referencia, incluídos autor,
-  	título, y notas de la edición. En caso de citar sitios web, además
-  	de la URL, incluya la fecha en que fue consultado, como en \cite{wiki}. Numere 
-  	las referencias según el orden en que se les cita.
 
-%===================================================================================
+Finalmente, siguiendo las ideas del artículo \emph{Chocolate chips and fish
+sauce: a network analysis and visualization in ingredient
+pairings}\cite{chocolate}, se utilizó una idea similar a TF-IDF (\emph{Term
+Frecuency - Inverse Document Frecuency}) pero en este caso entre recetas e
+ingredientes. Se computó el coeficiente IF-IRF (\emph{Ingredient Frequency -
+Inverse Recipe Frequency}) que denota la importancia que tiene cada par de
+ingredientes en las recetas de forma general:
 
+$$w_{ij} = (1 + \log{E_{ij}})\log(\frac{n_i + n_j}{N})$$
 
+Donde $E_{ij}$ denota la cantidad de recetas que contienen a los ingredientes
+$i$ y $j$, $n_i$ y $n_j$ la cantidad de recetas con el ingrediente $i$ y $j$
+respectivamente y $N$ la cantidad de recetas en total.
+
+Luego, analizando el peso de las aristas de un ingrediente determinado, se peude
+realizar una recomendación a los usuarios sobre posibles ingredientes que puede
+usar en conjunto con los que tiene.
+
+%-----------------------------------------------------------------------------------
+\section{Aplicación de Streamlit}\label{sec:app}
+%-----------------------------------------------------------------------------------
+
+Como medio de muestra de los estudios realizados en este trabajo se realizón
+una aplicación de Streamlit. En la aplicación se visualizan los algoritmos sobre
+los distintos grafos propuestos. De esta forma se observan todas las recetas del
+conjunto de datos, los ingrdientes que la conformas, asi como un sistema de
+filtrado de recetas de acuerdo a una lista de ingredientes que la conformen o no.
+
+También se integró un pequeño moledelo de \emph{scraping} que muestra varios
+enlaces a sitios en internet que muestran como elaborar una receta dada, dicho
+enlaces son producto de una búsqueda en \emph{Google}.
 
 %===================================================================================
 % Conclusiones
 %-----------------------------------------------------------------------------------
 \section{Conclusiones}\label{sec:conc}
 
-El análisis de redes complejas es una técnica matemática poderosa y versátil que
-se aplica en una amplia variedad de campos, incluyendo el de las recetas de
-cocina. En este trabajo, se muestra cómo esta técnica se utiliza para entender
-las relaciones entre los ingredientes y las recetas, y cómo ha permitido
-identificar patrones y tendencias en la forma en que se utilizan los
-ingredientes y las combinaciones de sabores. Además, se ha explorado cómo estás
-técnicas pueden utilizarse para desarrollar nuevas combinaciones de sabores y
-recetas.
+En este trabajo, se mostraron cómo las técnicas de analisis de redes complejas
+se utilizan para entender las relaciones entre los ingredientes y las recetas.
+Se identificaron patrones y tendencias en la forma en que se utilizan los
+ingredientes y las combinaciones de sabores.
+
+Se logró buscar una similaridad entre tipos de recetas, con resultados
+basados en los datos analizados. Dichos datos representaban como ingredientes de
+características parecidas podían usarse indistintamente en una misma receta o
+analizando el porciento de ingredientes comunes entre las mismas. Con este
+resultado se obtiene versatilidad a la hora de hacer una elaboración deseada sin
+tener completamente el conjunto de ingredientes que la conforman.
+
+Se obtuvo, además, una herramienta que permita analizar que ingredientes se
+suelen usar con otros y que al mismo tiempo dicha combinación sea representativa,
+la cual, junto a la herramienta de \emph{scraping} integrada en la aplicación,
+se logra un modelo completo de ayuda al usuario, ya que proporciona los medios
+y los pasos de elaboración.
 
 En resumen, el análisis de redes complejas es una técnica de análisis esencial
 para entender mejor y explorar la complejidad de las relaciones entre los
@@ -318,22 +332,22 @@ ingredientes y las recetas en el mundo de la cocina.
 
 %===================================================================================
 
-
-
 %===================================================================================
 % Recomendaciones
 %-----------------------------------------------------------------------------------
 \section{Recomendaciones}\label{sec:rec}
 
-A continuación, se presentan algunas recomendaciones a tener en cuenta al
-utilizar el análisis de redes complejas en el ámbito de las recetas de cocina:
+A continuación, se presentan algunas recomendaciones a tener en cuenta para
+futuros trabajos:
 \begin{itemize}
-	\item Utilizar una metodología rigurosa y estandarizada para la construcción
-	de la red compleja de ingredientes y recetas.
-	\item Asegurarse de que la interpretación de los resultados sea coherente
-	con el contexto cultural y culinario de las recetas analizadas.
 	\item Agregar más información a las redes(grafos) analizados así como la
-	exploración de otras variantes.
+	exploración de otras variantes, como la creación de nuevos grafos.
+	\item Insertar conocimiento nutricional para analizar estilos saludables de
+	alimentación
+	\item Insertar conocimiento geográfico que permita un análisis regional
+	agregando, además, recetas de diferentes culturas.
+	\item Agregar información sobre métodos de cocción que sirvan de métrica de
+	comparación en funciones de similaridad entre recetas.
 \end{itemize}
 
 %===================================================================================
@@ -343,19 +357,10 @@ utilizar el análisis de redes complejas en el ámbito de las recetas de cocina:
 %===================================================================================
 % Bibliografía
 %-----------------------------------------------------------------------------------
-\begin{thebibliography}{99}
-%-----------------------------------------------------------------------------------
-	\bibitem{costa} Costa, L. D. F., Rodrigues, F. A., Travieso, G., \& Villas Boas, P. R. (2007). Characterization of complex networks: A survey of measurements. Advances in physics, 56(1), 167-242.
 
-	\bibitem{boccaletti} Boccaletti, S., Latora, V., Moreno, Y., Chavez, M., \& Hwang, D. U. (2006). Complex networks: Structure and dynamics. Physics reports, 424(4-5), 175-308.
+\bibliography{Bibliography.bib}
 
-	\bibitem{ahn} Ahn, Y. Y., Ahnert, S. E., Bagrow, J. P., & Barabási, A. L. (2011). Flavor network and the principles of food pairing. Scientific reports, 1(1), 1-7.
-
-	\bibitem{herrera} Herrera, J. C. (2021). The contribution of network science to the study of food recipes. A review paper. Appetite, 159, 105048.
-
-%-----------------------------------------------------------------------------------
-\end{thebibliography}
-
+%plain, unsrt, abbrv y alpha.
 %-----------------------------------------------------------------------------------
 
 \label{end}
