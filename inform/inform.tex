@@ -173,7 +173,13 @@ recetas de cocina. Se realizarán varios estudios con respecto a distintos grafo
 obtenidos, entre los cuales se representan relaciones entre ingredientes y
 recetas y relaciones entre recetas buscando un comportamiento de similaridad.
 
-\todo{Parrafo q describe la estructura del documento}
+El informe prosigue con la siguente es estructura: primero una sección dedicada
+al tratamiento y extracción de los datos \ref{sec:data}, una sección que
+aborda la creación de de los grafos analisados asi como su representación
+\ref{sec:graphs} y luego una sección sobre la aplciación creada para la
+interacción de usuarios \ref{sec:app}. Posteriormente, se presentan las
+conclusiones finales \ref{sec:conc} y algunas recomendaciones para estudios
+futuros \ref{sec:rec}.
 
 %===================================================================================
 
@@ -195,8 +201,9 @@ recetas y relaciones entre recetas buscando un comportamiento de similaridad.
 \section{Extracción de datos}\label{sec:data}
 
 Para la realización de este proyecto se usaron dos fuentes de datos: el libro
-\emph{Cocina al minuto} de la escritora Nitza Villapol y el \emph{dataset} Recipes5k creado en la Universidad de Barcelona [\href{http://www.ub.edu/cvub/recipes5k/}{Recipes5k}]. \todo{pon esto como una
-cita, hay una forma de poner articulos de internet en bibtex.}
+\emph{Cocina al minuto} de la escritora Nitza Villapol y el \emph{dataset}
+Recipes5k creado en la Universidad de Barcelona [\href{http://www.ub.edu/cvub/recipes5k/}{Recipes5k}]
+\cite{bolanos2017food}.
 
 La extracción de las recetas e ingredientes del libro \emph{Cocina al minuto}
 se realizó de forma manual. Posteriormente, estos datos fueron traducidos al
@@ -213,9 +220,13 @@ receta representa una llave y su valor es una lista de ingredientes.
 %-----------------------------------------------------------------------------------
 \section{Grafos implementados}\label{sec:graphs}
 
-\todo{Escribir pequeña intro de q se implementaron unos grafos usando la bib
-networkx ...con el objetivo de extraer información de ellos y mostrarla en la
-aplciación etc etc}
+En el proyecto se implementaron grafos utilizando la biblioteca \emph{NetworkX}
+de \emph{Python}. El objetivo principal del proyecto fue extraer información de
+los grafos para mostrarla en una aplicación. Para lograr este objetivo, se
+crearon grafos a partir de los datos previamente mencionados. Una vez creados
+los grafos, se utilizaron las funciones de \emph{NetworkX} para analizarlos y
+extraer la información deseada. Dichos grafos serán explicados es secciones
+posteriores.
 
 \subsection{Grafo de Ingredientes y Recetas}\label{sub:ing-recip-graph}
 %-----------------------------------------------------------------------------------
@@ -280,24 +291,23 @@ enlaces son producto de una búsqueda en \emph{Google}.
 %-----------------------------------------------------------------------------------
 \section{Conclusiones}\label{sec:conc}
 
-El análisis de redes complejas es una técnica matemática poderosa y versátil que
-se aplica en una amplia variedad de campos, incluyendo el de las recetas de
-cocina. En este trabajo, se muestra cómo esta técnica se utiliza para entender
-las relaciones entre los ingredientes y las recetas, y cómo ha permitido
-identificar patrones y tendencias en la forma en que se utilizan los
+En este trabajo, se mostraron cómo las técnicas de analisis de redes complejas
+se utilizan para entender las relaciones entre los ingredientes y las recetas.
+Se identificaron patrones y tendencias en la forma en que se utilizan los
 ingredientes y las combinaciones de sabores.
 
-Se logró buscar una similaridad entre tipos de recetas, logrando resultados
-basados los datos analizados que representaban como ingredientes de
+Se logró buscar una similaridad entre tipos de recetas, con resultados
+basados en los datos analizados. Dichos datos representaban como ingredientes de
 características parecidas podían usarse indistintamente en una misma receta o
-analizando el porciento de ingredientes comunes entre las mismas, de esta forma
-se logra versatilidad a la hora de hacer una elaboración deseada sin tener
-completamente el conjunto de ingredientes que la conforman.
+analizando el porciento de ingredientes comunes entre las mismas. Con este
+resultado se obtiene versatilidad a la hora de hacer una elaboración deseada sin
+tener completamente el conjunto de ingredientes que la conforman.
 
-Se obtiene además un mecanismo de recomendación de ingredientes a la hora de
-buscar una receta a realizar, el cual, junto a la herramienta de \emph{scraping}
-integrada en la aplicación, se logra un modelo completo de ayuda al usuario, ya
-que proporciona los medios y los pasos de elaboración.
+Se obtuvo, además, una herramienta que permita analizar que ingredientes se
+suelen usar con otros y que al mismo tiempo dicha combinación sea representativa,
+la cual, junto a la herramienta de \emph{scraping} integrada en la aplicación,
+se logra un modelo completo de ayuda al usuario, ya que proporciona los medios
+y los pasos de elaboración.
 
 En resumen, el análisis de redes complejas es una técnica de análisis esencial
 para entender mejor y explorar la complejidad de las relaciones entre los
