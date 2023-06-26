@@ -202,8 +202,7 @@ futuros \ref{sec:rec}.
 
 Para la realización de este proyecto se usaron dos fuentes de datos: el libro
 \emph{Cocina al minuto} de la escritora Nitza Villapol y el \emph{dataset}
-Recipes5k creado en la Universidad de Barcelona [\href{http://www.ub.edu/cvub/recipes5k/}{Recipes5k}]
-\cite{bolanos2017food}.
+Recipes5k creado en la Universidad de Barcelona \cite{bolanos2017food}.
 
 La extracción de las recetas e ingredientes del libro \emph{Cocina al minuto}
 se realizó de forma manual. Posteriormente, estos datos fueron traducidos al
@@ -225,8 +224,8 @@ de \emph{Python}. El objetivo principal del proyecto fue extraer información de
 los grafos para mostrarla en una aplicación. Para lograr este objetivo, se
 crearon grafos a partir de los datos previamente mencionados. Una vez creados
 los grafos, se utilizaron las funciones de \emph{NetworkX} para analizarlos y
-extraer la información deseada. Dichos grafos serán explicados es secciones
-posteriores.
+extraer la información deseada. Dichos grafos serán explicados en las siguientes
+secciones.
 
 \subsection{Grafo de Ingredientes y Recetas}\label{sub:ing-recip-graph}
 %-----------------------------------------------------------------------------------
@@ -271,6 +270,24 @@ analizando el peso de las aristas de la forma $(r, u)$ en el grafo.
 %-----------------------------------------------------------------------------------
 \subsection{Grafo de IF-IRF}\label{sub:sim-graph}
 %-----------------------------------------------------------------------------------
+
+Finalmente, siguiendo las ideas del artículo \emph{Chocolate chips and fish
+sauce: a network analysis and visualization in ingredient
+pairings}\cite{chocolate}, se utilizó una idea similar a TF-IDF (\emph{Term
+Frecuency - Inverse Document Frecuency}) pero en este caso entre recetas e
+ingredientes. Se computó el coeficiente IF-IRF (\emph{Ingredient Frequency -
+Inverse Recipe Frequency}) que denota la importancia que tiene cada par de
+ingredientes en las recetas de forma general:
+
+$$w_{ij} = (1 + \log{E_{ij}})\log(\frac{n_i + n_j}{N})$$
+
+Donde $E_{ij}$ denota la cantidad de recetas que contienen a los ingredientes
+$i$ y $j$, $n_i$ y $n_j$ la cantidad de recetas con el ingrediente $i$ y $j$
+respectivamente y $N$ la cantidad de recetas en total.
+
+Luego, analizando el peso de las aristas de un ingrediente determinado, se peude
+realizar una recomendación a los usuarios sobre posibles ingredientes que puede
+usar en conjunto con los que tiene.
 
 %-----------------------------------------------------------------------------------
 \section{Aplicación de Streamlit}\label{sec:app}
