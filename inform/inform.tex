@@ -268,6 +268,21 @@ Luego, dado una receta $r$, se pueden obtener las recetas más similares a ella
 analizando el peso de las aristas de la forma $(r, u)$ en el grafo.
 
 %-----------------------------------------------------------------------------------
+\subsection{Grafo para Análisis de Comunidades}\label{sub:com-graph}
+%-----------------------------------------------------------------------------------
+
+El análisis de comunidades es una técnica indispensable en el trabajo con
+redes complejas. En este trabajao se propuso hacer un estudio sobre las
+comunidades de ingredientes que pudieran ser sustituidos por otra de se misma
+comunidad.
+
+Este análisis se hace mediante algoritmos de la biblioteca \emph{NetworkX}, los
+cuales aplican criterios sobre un grafo dado y sobre este se obtienen las listas
+de comunidades existentes. Por último, dada la colección de comunidades, se
+muestra el conjunto al cual pertenece un ingrediente determinado, de esta forma
+se tienen los elemento por los cuales puede ser sustituido. 
+
+%-----------------------------------------------------------------------------------
 \subsection{Grafo de IF-IRF}\label{sub:sim-graph}
 %-----------------------------------------------------------------------------------
 
