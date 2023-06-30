@@ -74,3 +74,15 @@ class RecipesApi:
             w = G.edges[ingrd, nb]["weight"]
             data.append((nb, w))
         return sorted(data, key=lambda x: x[1], reverse=False)
+    
+    def ingrd_com(self, ingrd) -> List:
+        # Or another communiyu algorithm
+        comunities = nx.community.greedy_modularity_communities(self.ingr_graph)
+
+        community = None
+        for i in comunities:
+            if ingrd in i:
+                community = i
+                break
+        
+        return community

@@ -116,3 +116,20 @@ def recip_ingr_widget():
             st.markdown(link_md, unsafe_allow_html=True)
 
             st.write(description_result[i])
+        
+    
+def find_similar_ingr():
+    st.header("Similar ingredients to:")
+    st.session_state.sim_ingr = st.session_state.get("sim_ingr", set())
+
+    # api = get_api()
+
+    # sim_ingrd = st.multiselect(
+    #     "Recipes that use ...",
+    #     api.ingredients,
+    #     list(st.session_state.sim_ingr),
+    # )
+
+    # com = find_similar_ingr(sim_ingrd)
+
+    # st.write(com)
